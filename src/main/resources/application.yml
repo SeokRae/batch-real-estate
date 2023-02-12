@@ -1,0 +1,44 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  batch:
+    job:
+      # job.name ?? ? ??
+      names: ${job.name:None}
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3307/realestate?useSSL=false&serverTimezone=UTC
+    username: seok
+    password: 1234
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    #    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations:
+      - classpath:db/migration
+
+file:
+  real-estate: files/seoul_real_estate_transaction_price.csv
+
+logging:
+  level:
+    #        org.springframework.batch.core.job: DEBUG
+    #        org.springframework.batch.core.launch.support: DEBUG
+    #        org.springframework.batch.core.repository.support: DEBUG
+    #        org.springframework.batch.core.step.tasklet: DEBUG
+    #        org.springframework.batch.core.step.item: DEBUG
+    org.springframework.batch.core.step: INFO
+#        org.spring framework.batch.core: DEBUG
+#        org.springframework.batch: INFO
+#        org: DEBUG
