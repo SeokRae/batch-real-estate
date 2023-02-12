@@ -29,7 +29,7 @@ import static org.springframework.batch.item.file.transform.DelimitedLineTokeniz
 @RequiredArgsConstructor
 public class FileToReadJob {
 	
-	private static final int CHUNK_SIZE = 10;
+	private static final int CHUNK_SIZE = 2000;
 	@Value("${file.real-estate}")
 	private String filePath;
 	private final JobBuilderFactory jobBuilderFactory;
@@ -49,7 +49,7 @@ public class FileToReadJob {
 		return stepBuilderFactory.get("txtFileItemReaderStep")
 			.<RealEstateFileVO, RealEstateEntity>chunk(CHUNK_SIZE)
 			.reader(txtFileItemReader(filePath))
-			.processor((ItemProcessor<RealEstateFileVO, RealEstateEntity>) fileVO -> RealEstateFileVO.toEntity(fileVO)
+			.processor((ItemProcessor<RealEstateFileVO, RealEstateEntity>) RealEstateFileVO::toEntity
 			)
 			.writer(jpaItemWriter())
 			.build();

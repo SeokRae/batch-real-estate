@@ -2,6 +2,8 @@ spring:
   main:
     allow-bean-definition-overriding: true
   batch:
+    jdbc:
+      isolation-level-for-create: READ_COMMITTED
     job:
       # job.name ?? ? ??
       names: ${job.name:None}
@@ -14,7 +16,7 @@ spring:
 
   jpa:
     open-in-view: false
-    show-sql: true
+#    show-sql: true
     #    generate-ddl: true
     hibernate:
       ddl-auto: validate
@@ -27,6 +29,7 @@ spring:
     baseline-on-migrate: true
     locations:
       - classpath:db/migration
+
 
 file:
   real-estate: files/seoul_real_estate_transaction_price.csv
