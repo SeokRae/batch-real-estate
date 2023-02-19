@@ -16,7 +16,7 @@ spring:
 
   jpa:
     open-in-view: false
-#    show-sql: true
+    #    show-sql: true
     #    generate-ddl: true
     hibernate:
       ddl-auto: validate
@@ -36,12 +36,12 @@ file:
 
 logging:
   level:
-    #        org.springframework.batch.core.job: DEBUG
+    org.springframework.batch.core.job: DEBUG
     #        org.springframework.batch.core.launch.support: DEBUG
     #        org.springframework.batch.core.repository.support: DEBUG
     #        org.springframework.batch.core.step.tasklet: DEBUG
     #        org.springframework.batch.core.step.item: DEBUG
-    org.springframework.batch.core.step: INFO
+    org.springframework.batch.core.step: DEBUG
 #        org.spring framework.batch.core: DEBUG
 #        org.springframework.batch: INFO
 #        org: DEBUG

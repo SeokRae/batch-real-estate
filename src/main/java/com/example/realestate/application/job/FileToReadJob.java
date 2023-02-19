@@ -62,17 +62,15 @@ public class FileToReadJob {
 	}
 	
 	public FlatFileItemReader<RealEstateFileVO> txtFileItemReader(String filePath) {
-		return new FlatFileItemReader<RealEstateFileVO>() {{
+		return new FlatFileItemReader<>() {{
 			/* 파일 경로 읽기 Resource 설정 */
 			setResource(new ClassPathResource(filePath));
 			/* 파일 인코딩 문제로 EUC-KR로 설정 */
-//			setEncoding("UTF-8");
 			setEncoding("EUC-KR");
-//			setEncoding("iso-8859-1");
 			/* excel 헤더 첫 번째 row Skip*/
 			setLinesToSkip(1);
 			/* [FlatFileReader 필수 설정] LineMapper 설정하기 */
-			setLineMapper(new DefaultLineMapper<RealEstateFileVO>() {{
+			setLineMapper(new DefaultLineMapper<>() {{
 				/* [LineMapper 필수 설정] LineTokenizer로 데이터 Mapping */
 				setLineTokenizer(
 					/* [DelimitedLineTokenizer 클래스의 필수 값] delimiter 설정 */
@@ -83,7 +81,7 @@ public class FileToReadJob {
 						// setIncludedFields(0, 1, 2, 3);
 					}});
 				/* BeanWrapperFieldSetMapper 는 Map 을 FieldSet의 객체로 변환하는 것으로 target 객체의 setter / getter가 필요함  */
-				setFieldSetMapper(new BeanWrapperFieldSetMapper<RealEstateFileVO>() {{
+				setFieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
 					/* CSV 파일의 값 부분을 Vo로 매핑 하기 위한 설정 */
 					setTargetType(RealEstateFileVO.class);
 				}});
